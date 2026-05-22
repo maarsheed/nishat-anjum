@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fitness Program Landing Page</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+
+            body {
+                background: #0b0b0f;
+                color: white;
+                overflow-x: hidden;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            /* HERO SECTION */
+
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 60px 8%;
+                background:
+                    radial-gradient(
+                        circle at top left,
+                        rgba(0, 255, 170, 0.15),
+                        transparent 30%
+                    ),
+                    radial-gradient(
+                        circle at bottom right,
+                        rgba(0, 140, 255, 0.15),
+                        transparent 30%
+                    ),
+                    #0b0b0f;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+                align-items: center;
+                max-width: 1200px;
+                width: 100%;
+            }
+
+            .image-box {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .image-box::before {
+                content: "";
+                position: absolute;
+                width: 350px;
+                height: 350px;
+                background: linear-gradient(135deg, #00ffaa, #0066ff);
+                border-radius: 50%;
+                filter: blur(70px);
+                opacity: 0.4;
+            }
+
+            .profile-img {
+                width: 360px;
+                height: 500px;
+                object-fit: cover;
+                border-radius: 30px;
+                position: relative;
+                z-index: 1;
+                border: 2px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            }
+
+            .content h1 {
+                font-size: 4rem;
+                line-height: 1;
+                margin-bottom: 20px;
+            }
+
+            .content h1 span {
+                color: #00ffaa;
+            }
+
+            .intro {
+                font-size: 1.15rem;
+                color: #d0d0d0;
+                line-height: 1.8;
+                margin-bottom: 25px;
+            }
+
+            .program {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 24px;
+                padding: 30px;
+                margin-bottom: 35px;
+                backdrop-filter: blur(10px);
+            }
+
+            .program h2 {
+                color: #00ffaa;
+                margin-bottom: 15px;
+            }
+
+            .program p {
+                color: #cfcfcf;
+                line-height: 1.7;
+            }
+
+            /* COUNTDOWN */
+
+            .timer-title {
+                color: #ff5f5f;
+                letter-spacing: 2px;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                font-size: 0.95rem;
+            }
+
+            .countdown {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .time-box {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 20px;
+                border-radius: 20px;
+                min-width: 100px;
+                text-align: center;
+            }
+
+            .time-box h3 {
+                font-size: 2rem;
+                color: #00ffaa;
+            }
+
+            .time-box p {
+                color: #aaa;
+                margin-top: 5px;
+            }
+
+            /* BUTTON */
+
+            .cta-btn {
+                display: inline-block;
+                margin-top: 35px;
+                padding: 16px 38px;
+                border-radius: 50px;
+                background: linear-gradient(135deg, #00ffaa, #0066ff);
+                text-decoration: none;
+                color: white;
+                font-weight: 600;
+                transition: 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 255, 170, 0.25);
+            }
+
+            .cta-btn:hover {
+                transform: translateY(-5px);
+            }
+
+            /* GENERAL SECTIONS */
+
+            .section {
+                padding: 100px 8%;
+                background: #0f1117;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 3rem;
+                margin-bottom: 60px;
+                color: white;
+            }
+
+            /* BEFORE AFTER */
+
+            .before-after-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+            }
+
+            .card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 24px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                transition: 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-8px);
+            }
+
+            .card img {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+            }
+
+            .card h3 {
+                text-align: center;
+                padding: 20px;
+                color: #00ffaa;
+            }
+
+            /* FLOWCHART */
+
+            .flowchart {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                flex-wrap: wrap;
+            }
+
+            .step {
+                width: 280px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 24px;
+                padding: 35px;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .step span {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                margin: auto;
+                margin-bottom: 20px;
+                background: linear-gradient(135deg, #00ffaa, #0066ff);
+                font-size: 1.3rem;
+                font-weight: bold;
+            }
+
+            .step h3 {
+                color: #00ffaa;
+                margin-bottom: 15px;
+            }
+
+            .step p {
+                color: #d0d0d0;
+                line-height: 1.6;
+            }
+
+            .arrow {
+                font-size: 3rem;
+                color: #00ffaa;
+            }
+
+            /* CERTIFICATES */
+
+            .certificate-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .certificate-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 24px;
+                overflow: hidden;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                transition: 0.3s ease;
+            }
+
+            .certificate-card:hover {
+                transform: translateY(-8px);
+            }
+
+            .certificate-card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
+
+            .certificate-card h3 {
+                padding: 20px;
+                color: #00ffaa;
+            }
+
+            /* FOOTER */
+
+            footer {
+                text-align: center;
+                padding: 30px;
+                background: #08080b;
+                color: #777;
+            }
+
+            /* MOBILE */
+
+            @media (max-width: 900px) {
+                .container {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+
+                .content h1 {
+                    font-size: 3rem;
+                }
+
+                .countdown {
+                    justify-content: center;
+                }
+
+                .profile-img {
+                    width: 300px;
+                    height: 420px;
+                }
+
+                .arrow {
+                    transform: rotate(90deg);
+                }
+
+                .section-title {
+                    font-size: 2.2rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+            <div class="container">
+                <!-- IMAGE -->
+
+                <div class="image-box">
+                    <img
+                        src="images/your-photo.jpg"
+                        alt="Fitness Coach"
+                        class="profile-img"
+                    />
+                </div>
+
+                <!-- CONTENT -->
+
+                <div class="content">
+                    <h1 style="font-size: 52px">
+                        Hi, I'm <span>Nishat Anjum</span>
+                    </h1>
+
+                    <p class="intro">
+                        I help people transform their physique, mindset,
+                        confidence, and lifestyle through sustainable fitness
+                        and proven training systems.
+                    </p>
+
+                    <div class="program">
+                        <h2>About My Fitness Program</h2>
+
+                        <p>
+                            This program is built to help you lose fat, build
+                            muscle, increase energy, and develop a strong
+                            disciplined mindset. You'll receive guided workouts,
+                            nutrition support, accountability, and a complete
+                            transformation roadmap.
+                        </p>
+                    </div>
+
+                    <!-- TIMER -->
+
+                    <p class="timer-title">Limited Enrollment Ends In</p>
+
+                    <div class="countdown">
+                        <div class="time-box">
+                            <h3 id="days">00</h3>
+                            <p>Days</p>
+                        </div>
+
+                        <div class="time-box">
+                            <h3 id="hours">00</h3>
+                            <p>Hours</p>
+                        </div>
+
+                        <div class="time-box">
+                            <h3 id="minutes">00</h3>
+                            <p>Minutes</p>
+                        </div>
+
+                        <div class="time-box">
+                            <h3 id="seconds">00</h3>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+
+                    <!-- GOOGLE FORM BUTTON -->
+
+                    <a
+                        href="https://forms.gle/3txxYVgNtpr2o1Ld8"
+                        target="_blank"
+                        class="cta-btn"
+                        style="font-size: 24px"
+                    >
+                        Join The Program
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEFORE AFTER SECTION -->
+
+        <section class="section">
+            <h2 class="section-title">Client Transformations</h2>
+
+            <div class="before-after-grid">
+                <div class="card">
+                    <img src="images/before1.jpg" alt="" />
+                    <h3>Before</h3>
+                </div>
+
+                <div class="card">
+                    <img src="images/after1.jpg" alt="" />
+                    <h3>After</h3>
+                </div>
+
+                <div class="card">
+                    <img src="images/before2.jpg" alt="" />
+                    <h3>Before</h3>
+                </div>
+
+                <div class="card">
+                    <img src="images/after2.jpg" alt="" />
+                    <h3>After</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- FITNESS JOURNEY -->
+
+        <section class="section">
+            <h2 class="section-title">Your Fitness Journey</h2>
+
+            <div class="flowchart">
+                <div class="step">
+                    <span>1</span>
+                    <h3>Consultation</h3>
+                    <p>
+                        We analyze your goals, lifestyle, and current fitness
+                        level.
+                    </p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    <span>2</span>
+                    <h3>Custom Plan</h3>
+                    <p>Receive personalized workouts and nutrition guidance.</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="step">
+                    <span>3</span>
+                    <h3>Transformation</h3>
+                    <p>
+                        Build confidence, discipline, strength, and long-term
+                        results.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATES -->
+
+        <section class="section">
+            <h2 class="section-title">My Certifications</h2>
+
+            <div class="certificate-grid">
+                <div class="certificate-card">
+                    <img src="images/certificate1.jpg" alt="" />
+                    <h3>Certified Fitness Trainer</h3>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/certificate2.jpg" alt="" />
+                    <h3>Nutrition Specialist</h3>
+                </div>
+
+                <div class="certificate-card">
+                    <img src="images/certificate3.jpg" alt="" />
+                    <h3>Strength & Conditioning</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer>© 2026 Your Name | All Rights Reserved</footer>
+
+        <!-- COUNTDOWN SCRIPT -->
+
+        <script>
+            const countdownDate = new Date().getTime() + 1 * 6 * 60 * 60 * 1000;
+
+            const timer = setInterval(function () {
+                const now = new Date().getTime();
+
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+                const hours = Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                );
+
+                const minutes = Math.floor(
+                    (distance % (1000 * 60 * 60)) / (1000 * 60),
+                );
+
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+
+                if (distance < 0) {
+                    clearInterval(timer);
+
+                    document.querySelector(".countdown").innerHTML =
+                        "<h2>Enrollment Closed</h2>";
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
